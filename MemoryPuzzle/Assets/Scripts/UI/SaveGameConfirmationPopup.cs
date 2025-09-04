@@ -33,11 +33,13 @@ namespace CyberSpeed.MemoryPuzzleGame
         {
             GameFlowController.Instance.GameSave();
             SetVisible(false);
+            SoundManager.Instance.PlayButtonClick();
         }
 
         private void HandleCancelButtonClicked()
         {
             SetVisible(false);
+            SoundManager.Instance.PlayButtonClick();
         }
     }
 }

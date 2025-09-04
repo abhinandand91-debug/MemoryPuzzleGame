@@ -41,11 +41,13 @@ namespace CyberSpeed.MemoryPuzzleGame
         {
             Show(false);
             GameFlowController.Instance.LoadGame(key);
+            SoundManager.Instance.PlayButtonClick();
         }
 
         private void LoadNewGame()
         {
             Show(false);
+            SoundManager.Instance.PlayButtonClick();
         }
 
     }

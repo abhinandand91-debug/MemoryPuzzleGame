@@ -12,6 +12,7 @@ namespace CyberSpeed.MemoryPuzzleGame
         public static GameFlowController Instance { get; private set; }
        
         public Action<int, int> OnGameStarted;
+        public Action<DifficultyConfig> OnGameComfigSet;
         public Action<IScoreData> OnGameOver;
         public Action OnGameSave;
         
@@ -38,6 +39,7 @@ namespace CyberSpeed.MemoryPuzzleGame
         private void Start()
         {
             InitialiseGame();
+            SoundManager.Instance.PlayMusic(false);
         }
         
         public void InitialiseGame()
@@ -55,8 +57,7 @@ namespace CyberSpeed.MemoryPuzzleGame
             gamePlayUIHandler.gameObject.SetActive(true);
             OnGameStarted?.Invoke(rows, cols);
             var config = cardGridBuilder.difficultyDatabase.GetConfig(difficultyLevel);
-            ScoreSystem.Instance.ResetAll();
-            ScoreSystem.Instance.ApplyDifficulty(config);
+            OnGameComfigSet?.Invoke(config);
             cardGridBuilder.CreateCardGrid(rows, cols);
         }
         
@@ -152,8 +153,7 @@ namespace CyberSpeed.MemoryPuzzleGame
             matchController.SetMatchedPairs(matchedCount / 2); // each pair has 2 cards
             
         }
-
-
+        
     }
 }
 

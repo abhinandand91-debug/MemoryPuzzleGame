@@ -62,9 +62,21 @@ namespace CyberSpeed.MemoryPuzzleGame
             Debug.Log($"Layout selected: {currentRows}x{currentColumns}");
 
             UpdateSavedGameButtonVisibility();
+            SoundManager.Instance.PlayButtonClick();
         }
 
         private (int, int) ParseRowColumn(string input)
+        {
+            var match = System.Text.RegularExpressions.Regex.Match(input, @"^(\d+)x(\d+)$");
+            if (match.Success)
+            {
+                return (int.Parse(match.Groups[1].Value), int.Parse(match.Groups[2].Value));
+            }
+
+            Debug.LogWarning($"Invalid layout format: {input}. Defaulting to 2x2.");
+            return (2, 2);
+        }
+        /*private (int, int) ParseRowColumn(string input)
         {
             string[] parts = input.Split('x');
             if (parts.Length == 2 &&
@@ -76,12 +88,13 @@ namespace CyberSpeed.MemoryPuzzleGame
 
             Debug.LogWarning($"Invalid layout format: {input}. Defaulting to 2x2.");
             return (2, 2);
-        }
+        }*/
 
         private void HandlePlayButtonClicked()
         {
             GameFlowController.Instance.StartGame(currentRows, currentColumns);
             gameObject.SetActive(false);
+            SoundManager.Instance.PlayButtonClick();
         }
 
         private void HandleLoadSavedGameButtonClicked()

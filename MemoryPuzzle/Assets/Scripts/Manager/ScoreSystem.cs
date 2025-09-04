@@ -29,7 +29,17 @@ namespace CyberSpeed.MemoryPuzzleGame
         public event Action<int> TurnChanged;
         public event Action<int, int, int> MatchStatsChanged; 
         public event Action<int> ComboChanged;
+
+        private void OnEnable()
+        {
+            GameFlowController.Instance.OnGameComfigSet += ApplyDifficulty;
+            
+        }
         
+        private void OnDisable()
+        {
+            GameFlowController.Instance.OnGameComfigSet -= ApplyDifficulty;
+        }
 
         private void Awake()
         {
@@ -42,7 +52,8 @@ namespace CyberSpeed.MemoryPuzzleGame
             Instance = this;
             ResetAll();
         }
-
+        
+        
         public void ResetAll()
         {
             Turns = 0;
@@ -65,6 +76,8 @@ namespace CyberSpeed.MemoryPuzzleGame
                 basePointsPerMatch = config.basePointsPerMatch;
             else
                 basePointsPerMatch = 10; // fallback default
+            
+            ResetAll();
         }
 
         public void IncrementTurn()

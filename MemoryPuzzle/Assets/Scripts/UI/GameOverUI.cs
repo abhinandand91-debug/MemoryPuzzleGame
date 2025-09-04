@@ -61,7 +61,7 @@ namespace CyberSpeed.MemoryPuzzleGame
             
             //HideWithDuration(0.5f);
             gameObject.SetActive(false);
-
+            SoundManager.Instance.PlayButtonClick();
         }
     }
 }

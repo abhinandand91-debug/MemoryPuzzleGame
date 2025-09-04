@@ -83,7 +83,7 @@ namespace CyberSpeed.MemoryPuzzleGame
         {
             IsMatched = true;
             Color color = frontImage.color;
-            color.a = 0.7f;
+            color.a = 0.2f;
             frontImage.color = color;
         }
 
