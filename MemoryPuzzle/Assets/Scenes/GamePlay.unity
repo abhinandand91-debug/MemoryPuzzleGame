@@ -2962,7 +2962,7 @@ MonoBehaviour:
   gamePlayUIHandler: {fileID: 2041228637}
   gameEndUIHandler: {fileID: 8598818574811361106}
   cardGridBuilder: {fileID: 1513208659}
-  difficultyLevel: 2
+  difficultyLevel: 0
 --- !u!4 &1513208657
 Transform:
   m_ObjectHideFlags: 0
