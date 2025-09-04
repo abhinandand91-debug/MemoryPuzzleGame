@@ -29,7 +29,6 @@ namespace CyberSpeed.MemoryPuzzleGame
                 return;
             }
             Instance = this;
-            DontDestroyOnLoad(gameObject);
 
             // Auto start background music
             if (backgroundMusic != null)
